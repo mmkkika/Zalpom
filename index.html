@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
    <head>
       <!-- Metas -->
       <meta charset="utf-8">
@@ -645,6 +645,31 @@
                </div>
             </div>
             <!--End container-->
+<div class="single_contant_left margin-top-60">
+                                            <form action="#" id="formid" method="post">
+                                                <!--<div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">-->
+
+                                                <div class="form-group">
+                                                    <label>Имя</label>
+                                                    <input type="text" class="form-control" name="name" required="">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>E-mail</label>
+                                                    <input type="email" class="form-control" name="email" required="">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Ваше сообщение</label>
+                                                    <textarea class="form-control" name="message" rows="8"></textarea>
+                                                </div>
+
+                                                <div class="">
+                                                    <input type="submit" value="Отправить" class="btn btn-default">
+                                                </div>
+                                                <!--</div>-->
+                                            </form>
+                                        </div>
          </section>
          <!--End contact section-->
          <footer class="pt-5 pb-5 footer">
@@ -674,6 +699,33 @@
       <script src="js/jquery.countdown.min.js" ></script>
       <script src="js/placeholders.min.js"></script>
       <script src="js/script.js"></script>
+
+  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.2.4/email.min.js"></script>
+<script type="text/javascript">
+(function(){
+emailjs.init("<user_Ya0JfVaBPh4xfLRJ9m4OI>");
+})();
+</script>
+<script type="text/javascript">
+ var myform = $("form#formid");
+myform.submit(function(event){
+	event.preventDefault();
+
+  // Change to your service ID, or keep using the default service
+  var service_id = "default_service";
+  var template_id = "template_WbRodTFY";
+
+  myform.find("button").text("Sending...");
+  emailjs.sendForm(service_id,template_id,myform[0])
+  	.then(function(){
+    	alert("Sent!");
+       myform.find("button").text("Send");
+    }, function(err) {
+       alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+       myform.find("button").text("Send");
+    });
+  return false;
+});</script>
       <!-- Google analytics -->
       <!-- End google analytics -->
    </body>
